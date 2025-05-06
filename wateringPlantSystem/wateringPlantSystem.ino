@@ -41,16 +41,18 @@ void wateringPlant(){
   int moisturevalue = analogRead(sensorpin); // รับค่าความชิ้นจาก analog pin 0
   Serial.println(moisturevalue); // แสดงค่าความชื่นใบน Serial Monitor
 
-  // เงื่อนไข ถ้าความชื่น < 500, เสียงจะดังทุกๆ 2 sec
+  // เงื่อนไข ถ้าความชื่น > 500, เสียงจะดังทุกๆ 2 sec
   if(moisturevalue > 500){
     tone(buzzer, 1000); // เปิดเสียง
     delay(1000); // delay 1 sec
     noTone(buzzer); // ปิดเสียง
     delay(1000); // delay 1 sec
     digitalWrite(signalLED, HIGH); // เปิดไฟ
-    } else
+    } else {
       digitalWrite(signalLED, LOW); // ปิดไฟ
   }
+
+}
 
 void loop() {
   wateringPlant(); // เรียกใช้ wateringPlant
